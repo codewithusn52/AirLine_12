@@ -30,7 +30,26 @@ def bookticket(request):
 
 
 def viewTicket(request):
-    name=request.GET['name']
+    rec=models.ticketdetails.objects.get(id=id)
+    if request.method == 'POST':
+            f=forms.ticketForm(request.POST)
+            if f.is_valid():
+               
+                    rec.name = f.cleaned_data['name'],
+                    rec.m_no = f.cleaned_data['m_no'],
+                    rec.age = f.cleaned_data['age'],
+                    rec.add = f.cleaned_data['add'],
+                    rec.dest = f.cleaned_data['dest'],
+                    rec.Bank_name=f.cleaned_data['Bank_name'],
+                    rec.accNo=f.cleaned_data['accNo'],
+                    rec.code=f.cleaned_data['code'],
+                    rec.travel_class = f.cleaned_data['travel_class'],
+                    rec.time = f.cleaned_data['time']
+                    
+    else:
+        f=forms.ticketForm()   
+    return render(request,'bookticket.html',{'form':f})
+    '''name=request.GET['name']
     mobile_number=request.GET['m_no']
     Age=request.GET['age']
     Address=request.GET['add']
@@ -45,4 +64,4 @@ def viewTicket(request):
         'BName': Bank_name,'AcNo': Account_No, 'IFSC': IFSC_CODE,'TravelC':travel_Class,'time': Time,
         }
     return render (request,'e_ticket.html',air_dict)
-
+'''

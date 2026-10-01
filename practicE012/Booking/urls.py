@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     # Uncomment the next line to enable the admin:
     #path('admin/', admin.site.urls),
-    ath('bookTicket/', views.bookticket, name="bookn"),
+    path('bookTicket/', views.bookticket, name="bookn"),
     path('viewTicket/', views.viewTicket, name="viewT"),
 
 ]
