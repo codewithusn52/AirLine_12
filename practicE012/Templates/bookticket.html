@@ -7,48 +7,10 @@
 </head>
 <body>
     <h1>Booking Tickets</h1>
-
     <form method="POST">
-        <!--
-        <label for="name">Enter your name:</label><br>
-        <input type="text" id="name" name="name" /><br><br>
-
-        <label for="phone">Enter your Mobile number:</label><br>
-        <input type="tel" id="phone" name="phone" /><br><br>
-
-        <label for="age">Enter your age:</label><br>
-        <input type="number" id="age" name="age" /><br><br>
-
-        <label for="address">Enter your address:</label><br>
-        <input type="text" id="address" name="address" /><br><br>
-
-        <label for="destination">Enter your Destination:</label><br>
-        <input type="text" id="destination" name="destination" /><br><br>
-
-        <label>Enter your Bank name:</label><br>
-        <input type="text" name="Bank_name" /><br><br>
-
-        <label>Enter your Account number :</label><br>
-        <input type="text" name="AccNo" /><br><br>
-
-        <label>Enter your IFSC CODE :</label><br>
-        <input type="text" name="code" /><br><br>
-
-        <label for="class">Enter your class:</label><br>
-        <select id="class" name="class">
-            <option value="Economy class">Economy class</option>
-            <option value="Business class">Business class</option>
-            <option value="Upper high class">Upper high class</option>
-            <option value="High class">High class</option>
-            <option value="Middle class">Middle class</option>
-        </select><br><br>
-
-        <label for="time">Enter your preferred Time:</label><br>
-        <input type="time" id="time" name="time" /><br><br>
-        --->
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" name="Submit" value="Submit" /> 
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="Submit" value="Submit" /> 
     </form>
 
 </body>

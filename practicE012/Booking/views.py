@@ -1,11 +1,6 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.shortcuts import redirect, render
 from . import forms
 from . import models
-
-# Create your views here.
-
 def bookticket(request):
     if request.method == 'POST':
         f=forms.ticketForm(request.POST)
@@ -26,28 +21,23 @@ def bookticket(request):
         f=forms.ticketForm()   
     return render(request,'bookticket.html',{'form':f})
 
-
-
-
-def viewTicket(request):
+def viewTicket(request, id):
     rec=models.ticketdetails.objects.get(id=id)
     if request.method == 'POST':
-            f=forms.ticketForm(request.POST)
-            if f.is_valid():
-               
-                    rec.name = f.cleaned_data['name'],
-                    rec.m_no = f.cleaned_data['m_no'],
-                    rec.age = f.cleaned_data['age'],
-                    rec.add = f.cleaned_data['add'],
-                    rec.dest = f.cleaned_data['dest'],
-                    rec.Bank_name=f.cleaned_data['Bank_name'],
-                    rec.accNo=f.cleaned_data['accNo'],
-                    rec.code=f.cleaned_data['code'],
-                    rec.travel_class = f.cleaned_data['travel_class'],
-                    rec.time = f.cleaned_data['time']
-                    
+        f=forms.ticketForm(request.POST)
+        if f.is_valid():
+            for field, value in f.cleaned_data.items():
+                setattr(rec, field, value)
+            rec.save()
+            return redirect('viewT', id=rec.id)
     else:
-        f=forms.ticketForm()   
+        f=forms.ticketForm(initial={
+            field: getattr(rec, field)
+            for field in (
+                'name', 'm_no', 'age', 'add', 'dest', 'Bank_name',
+                'accNo', 'code', 'travel_class', 'time',
+            )
+        })
     return render(request,'bookticket.html',{'form':f})
     '''name=request.GET['name']
     mobile_number=request.GET['m_no']

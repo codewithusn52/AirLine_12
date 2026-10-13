@@ -8,7 +8,9 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     #path('admin/', admin.site.urls),
     path('bookTicket/', views.bookticket, name="bookn"),
-    path('viewTicket/', views.viewTicket, name="viewT"),
+    path('viewTicket/<int:id>/', views.viewTicket, name="viewT"),
+    # urls.py
+#path('ticket/', views.viewTicket, name='view_ticket')
 
 ]
 
